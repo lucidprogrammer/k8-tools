@@ -10,6 +10,6 @@ RUN curl -L -o /usr/bin/kubectl https://storage.googleapis.com/kubernetes-releas
     && mkdir /work
 
 WORKDIR /work
-COPY *.sh /work
+COPY *.sh .
 RUN chmod +x /work/*.sh
 
