@@ -22,7 +22,8 @@ if [ -n "${r53}" ] && [ -n "${elb}" ]; then
     printf "%s\n%s" "${r53}" "${elb}" >> $HOME/.aws/credentials
     chmod 600 $HOME/.aws/credentials
     # change the input variables
-    set -- "$subdomain" "$hostedZoneDomain" "r53" "elb"
+    action="${5:-""}" #as we are mutating input, let's have them all
+    set -- "$subdomain" "$hostedZoneDomain" "r53" "elb" "$action"
     
 fi
 
