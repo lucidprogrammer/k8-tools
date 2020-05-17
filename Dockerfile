@@ -6,7 +6,7 @@ RUN apk --no-cache add jq bash py3-setuptools openssl curl tar gzip ca-certifica
     
 RUN curl -L -o /usr/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.16.8/bin/linux/amd64/kubectl \
     && chmod +x /usr/bin/kubectl \
-    && update-alternatives --install /usr/bin/python python /usr/bin/python3 10
+    && update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
     && mkdir /work
 
 WORKDIR /work
