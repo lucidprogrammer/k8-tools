@@ -29,7 +29,7 @@ fi
 profileForRoute53Changes="${3:-""}"
 # if your aws resources are owned by another aws account.
 profileOwningELB="${4:-"$profileForRoute53Changes"}"
-
+action="${5:-"UPSERT"}"
 EDGE_PROXY_NAMESPACE="${"$EDGE_PROXY_NAMESPACE":-"istio-system"}"
 EDGE_PROXY_SERVICE_NAME="${"$EDGE_PROXY_SERVICE_NAME":-"istio-ingressgateway"}"
 
@@ -41,7 +41,7 @@ if [ -n "${hostedZoneDomain}" ] && [ -n "${subdomain}" ] && [ -n "${profileForRo
     if [ -z "$mappingTarget" ]; then
         echo "Mapping target is not yet assigned";exit 1
     fi
-    "${BINDIR}"/create-domain-mappings-aws.sh "$profileForRoute53Changes" "${hostedZoneDomain}" "${subdomain}" "${mappingTarget}" "UPSERT" "A" "yes" "$profileOwningELB"
+    "${BINDIR}"/create-domain-mappings-aws.sh "$profileForRoute53Changes" "${hostedZoneDomain}" "${subdomain}" "${mappingTarget}" "$action" "A" "yes" "$profileOwningELB"
 else
     echo "$usage";exit 1
 fi
