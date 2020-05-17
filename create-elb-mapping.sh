@@ -30,8 +30,9 @@ profileForRoute53Changes="${3:-""}"
 # if your aws resources are owned by another aws account.
 profileOwningELB="${4:-"$profileForRoute53Changes"}"
 action="${5:-"UPSERT"}"
-EDGE_PROXY_NAMESPACE="${"$EDGE_PROXY_NAMESPACE":-"istio-system"}"
-EDGE_PROXY_SERVICE_NAME="${"$EDGE_PROXY_SERVICE_NAME":-"istio-ingressgateway"}"
+
+EDGE_PROXY_NAMESPACE="${EDGE_PROXY_NAMESPACE:-"istio-system"}"
+EDGE_PROXY_SERVICE_NAME="${EDGE_PROXY_SERVICE_NAME:-"istio-ingressgateway"}"
 
 usage="Provide the namespace where the services are running
 By default, we will 
