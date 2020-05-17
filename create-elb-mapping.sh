@@ -10,10 +10,10 @@ hostedZoneDomain="${2:-""}"
 r53=""
 elb=""
 if [ -n "${AWS_ACCESS_KEY_ID_R53}" ] && [ -n "${AWS_SECRET_ACCESS_KEY_R53}" ] && [ -n "${AWS_DEFAULT_REGION_R53}" ]; then
-    r53="$(printf "[r53]\naws_access_key_id = %s\naws_secret_access_key = %s\nregion = %s\n" "${AWS_ACCESS_KEY_ID_R53}" "${AWS_SECRET_ACCESS_KEY_R53}" "${AWS_DEFAULT_REGION_R53}")"
+    r53="$(printf "\n[r53]\naws_access_key_id = %s\naws_secret_access_key = %s\nregion = %s\n" "${AWS_ACCESS_KEY_ID_R53}" "${AWS_SECRET_ACCESS_KEY_R53}" "${AWS_DEFAULT_REGION_R53}")"
 fi
 if [ -n "${AWS_ACCESS_KEY_ID_ELB}" ] && [ -n "${AWS_SECRET_ACCESS_KEY_ELB}" ] && [ -n "${AWS_DEFAULT_REGION_ELB}" ]; then
-    elb="$(printf "[elb]\naws_access_key_id = %s\naws_secret_access_key = %s\nregion = %s\n" "${AWS_ACCESS_KEY_ID_ELB}" "${AWS_SECRET_ACCESS_KEY_ELB}" "${AWS_DEFAULT_REGION_ELB}")"
+    elb="$(printf "\n[elb]\naws_access_key_id = %s\naws_secret_access_key = %s\nregion = %s\n" "${AWS_ACCESS_KEY_ID_ELB}" "${AWS_SECRET_ACCESS_KEY_ELB}" "${AWS_DEFAULT_REGION_ELB}")"
 fi
 if [ -n "${r53}" ] && [ -n "${elb}" ]; then
     if [ ! -d "$HOME"/.aws ]; then
@@ -22,7 +22,7 @@ if [ -n "${r53}" ] && [ -n "${elb}" ]; then
     printf "%s\n%s" "${r53}" "${elb}" >> $HOME/.aws/credentials
     chmod 600 $HOME/.aws/credentials
     # change the input variables
-    set -- "$subdomain" "$hostedZoneDomain" "r43" "elb"
+    set -- "$subdomain" "$hostedZoneDomain" "r53" "elb"
     
 fi
 
